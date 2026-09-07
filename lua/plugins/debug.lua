@@ -12,28 +12,19 @@ return {
 			{
 				"<leader>dc",
 				function()
-					require("dap").continue()
+					require("dap.continue")()
 				end,
 				desc = "Start / Continue",
-			},
-			{
-				"<leader>dt",
-				function()
-					require("dap-go").debug_test()
-				end,
-				desc = "Debug Test (Go)",
 			},
 		},
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio",
-			"leoluz/nvim-dap-go",
 		},
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
 
-			require("dap-go").setup()
 			dapui.setup()
 
 			dap.listeners.after.event_initialized["dapui_config"] = function()

@@ -20,10 +20,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
-			ensure_installed = {
-				"emmylua_ls",
-				"gopls",
-			},
+			ensure_installed = {},
 			automatic_installation = true,
 		},
 	},
@@ -33,13 +30,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
-			ensure_installed = {
-				"stylua",
-				"gofumpt",
-				"goimports",
-				"golangci-lint",
-				"luacheck",
-			},
+			ensure_installed = {},
 			auto_update = false,
 			run_on_start = true,
 		},
@@ -53,16 +44,21 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
-			require("lsp")
+			-- Shared capabilities for all LSP servers
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+			})
+
+			-- LspAttach keybindings
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local opts = { buffer = args.buf }
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+				end,
+			})
 		end,
-	},
-	{
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
 	},
 }
