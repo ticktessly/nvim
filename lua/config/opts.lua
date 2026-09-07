@@ -5,6 +5,8 @@ opts.tabstop = 2
 opts.shiftwidth = 2
 opts.softtabstop = 2
 opts.expandtab = true
+opts.autoindent = true
+opts.smartindent = true
 opts.confirm = true
 opts.clipboard = "unnamedplus"
 

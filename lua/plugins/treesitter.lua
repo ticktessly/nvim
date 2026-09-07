@@ -6,6 +6,7 @@ return {
 	cmd = { "TSUpdate", "TSInstall" },
 	opts = {
 		ensure_installed = {
+			"go",
 			"bash",
 			"c",
 			"diff",
