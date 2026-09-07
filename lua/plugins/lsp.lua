@@ -1,59 +1,59 @@
 return {
 	{
+		"williamboman/mason.nvim",
+		cmd = "Mason",
+		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+		build = ":MasonUpdate",
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		},
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		cmd = { "LspInstall", "LspUninstall" },
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "williamboman/mason.nvim" },
+		opts = {
+			ensure_installed = {
+				"emmylua_ls",
+				"gopls",
+			},
+			automatic_installation = true,
+		},
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "williamboman/mason.nvim" },
+		opts = {
+			ensure_installed = {
+				"stylua",
+				"gofumpt",
+				"goimports",
+				"golangci-lint",
+				"luacheck",
+			},
+			auto_update = false,
+			run_on_start = true,
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "saghen/blink.cmp" },
+		dependencies = {
+			"saghen/blink.cmp",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
-			vim.lsp.config("*", {
-				capabilities = require("blink.cmp").get_lsp_capabilities(),
-			})
-
-			-- cmp for neovim's vim api
-			vim.lsp.config("emmylua_ls", {
-				on_init = function(client)
-					-- If the workspace has its own emmylua_ls/lua_ls config file, defer to it.
-					if client.workspace_folders then
-						local path = client.workspace_folders[1].name
-						if
-							path ~= vim.fn.stdpath("config")
-							and (vim.uv.fs_stat(path .. "/.emmyrc.json") or vim.uv.fs_stat(path .. "/.luarc.json"))
-						then
-							client.config.settings = {}
-						end
-					end
-				end,
-				settings = {
-					emmylua = {
-						-- Tell the server which Lua you're using (usually LuaJIT, for Neovim).
-						runtime = { version = "LuaJIT" },
-						diagnostics = { globals = { "vim" } },
-						-- Make the server aware of Neovim runtime files.
-						workspace = {
-							library = {
-								vim.env.VIMRUNTIME,
-								-- For LSP Settings Type Annotations: https://github.com/neovim/nvim-lspconfig#lsp-settings-type-annotations
-								vim.api.nvim_get_runtime_file("lua/lspconfig", false)[1],
-							},
-							-- Or pull in all of 'runtimepath'. May be slower!
-							-- library = vim.api.nvim_get_runtime_file('', true),
-						},
-					},
-				},
-			})
-
-			vim.lsp.enable("emmylua_ls")
-			vim.lsp.enable("gopls")
-
-			-- LspAttach keybindings
-			vim.api.nvim_create_autocmd("lspattach", {
-				callback = function(args)
-					local opts = { buffer = args.buf }
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-				end,
-			})
+			require("lsp")
 		end,
 	},
 	{
