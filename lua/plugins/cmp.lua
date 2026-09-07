@@ -1,12 +1,13 @@
 return {
 	{
 		"saghen/blink.cmp",
+		dependencies = { "rafamadriz/friendly-snippets" },
 		version = "1.*",
 		event = { "InsertEnter", "CmdlineEnter" },
 		opts = {
 			keymap = { preset = "super-tab" },
 			sources = {
-				default = { "lazydev", "lsp", "path", "buffer" },
+				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
