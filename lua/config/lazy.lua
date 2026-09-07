@@ -19,10 +19,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup lazy.nvim and import specs from `./lua/plugins/`
+-- Setup lazy.nvim, importing general plugins and modular language specs
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
+		require("lang"),
 	},
 	performance = {
 		rtp = {

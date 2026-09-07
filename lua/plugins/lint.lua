@@ -1,14 +1,12 @@
--- plugins/lint.lua
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
-	config = function()
+	opts = {
+		linters_by_ft = {},
+	},
+	config = function(_, opts)
 		local lint = require("lint")
-
-		lint.linters_by_ft = {
-			go = { "golangcilint" },
-			lua = { "luacheck" },
-		}
+		lint.linters_by_ft = opts.linters_by_ft or {}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

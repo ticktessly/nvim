@@ -6,26 +6,17 @@ return {
 	cmd = { "TSUpdate", "TSInstall" },
 	opts = {
 		ensure_installed = {
-			"go",
 			"bash",
 			"c",
 			"diff",
 			"html",
-			"javascript",
-			"jsdoc",
 			"json",
-			"lua",
-			"luadoc",
-			"luap",
 			"markdown",
 			"markdown_inline",
 			"printf",
-			"python",
 			"query",
 			"regex",
 			"toml",
-			"tsx",
-			"typescript",
 			"vim",
 			"vimdoc",
 			"xml",
@@ -38,9 +29,9 @@ return {
 		-- install any missing parsers (async)
 		require("nvim-treesitter").install(opts.ensure_installed)
 
-		-- highlighting: enabled per-buffer via autocmd (no more `highlight.enable`)
+		-- highlighting: enabled per-buffer via autocmd
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = opts.ensure_installed, -- limit to filetypes matching parser names; adjust if ft != parser name
+			pattern = opts.ensure_installed,
 			callback = function()
 				pcall(vim.treesitter.start)
 			end,
