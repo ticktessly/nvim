@@ -1,4 +1,4 @@
-local opts = vim.o
+local opts = vim.opt
 opts.number = true
 opts.relativenumber = true
 opts.tabstop = 2
@@ -12,9 +12,9 @@ opts.clipboard = "unnamedplus"
 
 vim.loader.enable()
 vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
 })
