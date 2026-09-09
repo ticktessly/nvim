@@ -1,6 +1,6 @@
 return {
 	"mfussenegger/nvim-lint",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	opts = {
 		linters_by_ft = {},
 	},
