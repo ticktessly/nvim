@@ -10,5 +10,11 @@ opts.smartindent = true
 opts.confirm = true
 opts.clipboard = "unnamedplus"
 
-vim.diagnostic.enable = true
 vim.loader.enable()
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})
