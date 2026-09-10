@@ -103,7 +103,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     version = false,
     keys = {
       {
