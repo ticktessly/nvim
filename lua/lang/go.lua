@@ -33,22 +33,4 @@ return {
       opts.linters_by_ft.go = { "golangcilint" }
     end,
   },
-
-  -- Debugger for Go
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = { "leoluz/nvim-dap-go" },
-    opts = function()
-      require("dap-go").setup()
-    end,
-    keys = {
-      {
-        "<leader>dt",
-        function()
-          require("dap-go").debug_test()
-        end,
-        desc = "Debug Test (Go)",
-      },
-    },
-  },
 }
