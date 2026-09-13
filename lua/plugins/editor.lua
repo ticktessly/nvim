@@ -164,4 +164,10 @@ return {
     },
     opts = {},
   },
+  {
+    "sphamba/smear-cursor.nvim",
+    event = "VeryLazy",
+    version = false,
+    opts = {},
+  },
 }
