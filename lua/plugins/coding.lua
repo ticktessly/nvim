@@ -25,7 +25,11 @@ return {
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
-			completion = { documentation = { auto_show = true } },
+			completion = {
+				documentation = { auto_show = true, window = { border = "rounded" } },
+				menu = { border = "rounded" },
+				signature = { window = { border = "rounded" } },
+			},
 			cmdline = {
 				keymap = { preset = "super-tab" },
 				completion = { menu = { auto_show = true } },
