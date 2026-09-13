@@ -35,6 +35,7 @@ require("lazy").setup({
         "spellfile",
         "rplugin",
         "man",
+        "dir",
         "netrwPlugin", -- replaced by mini.files
       },
     },
