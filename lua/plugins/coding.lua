@@ -50,7 +50,7 @@ return {
   },
   {
     "nvim-mini/mini.ai",
-    event = "InsertEnter",
+    event = "VeryLazy",
     version = false,
     opts = {},
   },
