@@ -22,29 +22,7 @@ return {
       "xml",
       "yaml",
     },
+    indent = { enabled = true },
+    highlighting = { enabled = true },
   },
-  config = function(_, opts)
-    require("nvim-treesitter").setup(opts)
-
-    -- install any missing parsers (async)
-    require("nvim-treesitter").install(opts.ensure_installed)
-
-    -- highlighting: enabled per-buffer via autocmd
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = opts.ensure_installed,
-      callback = function()
-        pcall(vim.treesitter.start)
-      end,
-    })
-
-    -- indent: use treesitter's indentexpr
-    -- vim.api.nvim_create_autocmd("FileType", {
-    --   callback = function()
-    --     local ok = pcall(vim.treesitter.get_parser, 0)
-    --     if ok then
-    --       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-    --     end
-    --   end,
-    -- })
-  end,
 }
