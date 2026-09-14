@@ -1,5 +1,8 @@
 local hey = function()
-    print("Hello world")
+	print("Hello world")
 end
 
 hey()
+
+local name = "hello"
+print(name)
