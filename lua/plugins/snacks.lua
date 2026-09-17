@@ -16,6 +16,7 @@ return {
 			},
 		},
 		dashboard = { enabled = true },
+		notifier = { enabled = true },
 		scroll = { enabled = false },
 		explorer = { enabled = true },
 		indent = { enabled = true },
