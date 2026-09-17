@@ -12,27 +12,38 @@ return {
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
+		cmd = "LazyDev",
 		opts = {
 			library = {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				{ path = "snacks.nvim", words = { "Snacks" } },
+				{ path = "lazy.nvim", words = { "Lazy" } },
 			},
 		},
 	},
+
 	{ "Bilal2453/luvit-meta", lazy = true },
 
 	-- LSP setup for Lua (lua_ls)
 	{
 		"neovim/nvim-lspconfig",
-		opts = function()
-			vim.lsp.config("lua_ls", {
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
+		opts = {
+			servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim", "Snacks" },
+							},
+							completion = {
+								callSnippet = "Replace",
+							},
 						},
 					},
 				},
-			})
+			},
+		},
+		config = function()
 			vim.lsp.enable("lua_ls")
 		end,
 	},
