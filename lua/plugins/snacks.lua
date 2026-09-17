@@ -63,7 +63,7 @@ return {
 			function()
 				Snacks.picker.grep()
 			end,
-			desc = "Find Git Files",
+			desc = "Grep Files",
 		},
 		{
 			"<leader>fp",
