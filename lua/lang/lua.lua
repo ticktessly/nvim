@@ -25,25 +25,22 @@ return {
 	{ "Bilal2453/luvit-meta", lazy = true },
 
 	-- LSP setup for Lua (lua_ls)
+
 	{
 		"neovim/nvim-lspconfig",
-		opts = {
-			servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = { "vim", "Snacks" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
+		opts = function()
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim", "Snacks" },
+						},
+						completion = {
+							callSnippet = "Replace",
 						},
 					},
 				},
-			},
-		},
-		config = function()
+			})
 			vim.lsp.enable("lua_ls")
 		end,
 	},
