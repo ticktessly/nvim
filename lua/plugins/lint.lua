@@ -2,7 +2,13 @@ return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	opts = {
-		linters_by_ft = {},
+		linters_by_ft = {
+			go = { "golangcilint" },
+			javascript = { "eslint" },
+			lua = { "luacheck" },
+			python = { "ruff" },
+			typescript = { "eslint" },
+		},
 	},
 	config = function(_, opts)
 		local lint = require("lint")
