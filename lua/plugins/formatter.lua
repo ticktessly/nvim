@@ -15,7 +15,15 @@ return {
 	---@module "conform"
 	---@type conform.setupOpts
 	opts = {
-		formatters_by_ft = {},
+		formatters_by_ft = {
+			go = { "gofumpt", "goimports" },
+			javascript = { "prettierd", "prettier", stop_after_first = true },
+			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+			lua = { "stylua" },
+			python = { "ruff_format", "isort" },
+			typescript = { "prettierd", "prettier", stop_after_first = true },
+			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+		},
 		default_format_opts = {
 			lsp_format = "fallback",
 		},
