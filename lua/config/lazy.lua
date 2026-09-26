@@ -24,6 +24,7 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 		{ import = "plugins.mini" },
+		-- { import = "plugins.mason" },
 	},
 	performance = {
 		rtp = {
