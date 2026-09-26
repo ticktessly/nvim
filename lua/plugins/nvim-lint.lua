@@ -4,10 +4,13 @@ return {
 	opts = {
 		linters_by_ft = {
 			go = { "golangcilint" },
-			javascript = { "eslint" },
+			javascript = { "eslint_d" },
+			javascriptreact = { "eslint_d" },
 			lua = { "luacheck" },
 			python = { "ruff" },
-			typescript = { "eslint" },
+			typescript = { "eslint_d" },
+			typescriptreact = { "eslint_d" },
+			vue = { "eslint_d" },
 		},
 	},
 	config = function(_, opts)
