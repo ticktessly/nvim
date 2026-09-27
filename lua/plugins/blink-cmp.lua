@@ -36,7 +36,6 @@ return {
 			completion = {
 				menu = {
 					auto_show = true,
-					border = "rounded",
 				},
 			},
 		},
