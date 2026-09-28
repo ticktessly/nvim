@@ -1,4 +1,10 @@
 {
-  "runtime.version": "LuaJIT",
-  "workspace.checkThirdParty": "Disable"
+  "runtime": { "version": "LuaJIT" },
+  "diagnostics": {
+    "globals": ["vim"],
+    "disable": ["assign-type-mismatch"]
+  },
+  "workspace": {
+    "library": ["/data/data/com.termux/files/usr/share/nvim/runtime"]
+  }
 }
