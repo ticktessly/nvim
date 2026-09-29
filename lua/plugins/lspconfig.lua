@@ -7,7 +7,7 @@ return {
 			capabilities = require("blink.cmp").get_lsp_capabilities(),
 		})
 
-		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("emmylua_ls")
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("ty")
 		vim.lsp.enable("vtsls")
