@@ -2,15 +2,31 @@ return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+			cond = function()
+				return vim.fn.executable("make") == 1
+			end,
+		},
 	},
 	opts = {
 		defaults = {
 			path_display = { "smart" },
 		},
+		extensions = {
+			fzf = {
+				fuzzy = true,
+				override_generic_sorter = true,
+				override_file_sorter = true,
+				case_mode = "smart_case",
+			},
+		},
 	},
 	config = function(_, opts)
 		local telescope = require("telescope")
 		telescope.setup(opts)
+		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "projects")
 	end,
 	keys = {
@@ -24,7 +40,7 @@ return {
 		{
 			"<leader>ff",
 			function()
-				require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+				require("telescope.builtin").find_files({ hidden = true })
 			end,
 			desc = "Find Files",
 		},
