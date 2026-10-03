@@ -20,7 +20,7 @@ return {
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 			lua = { "stylua" },
-			python = { "ruff_format", "isort" },
+			python = { "ruff_format", "ruff_organize_imports" },
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 		},

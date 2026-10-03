@@ -11,7 +11,7 @@ return {
 		require("mason-tool-installer").setup({
 			run_on_start = true,
 			ensure_installed = {
-				"lua-language-server",
+				"emmylua_ls",
 				"gopls",
 				"ty",
 				"vtsls",
@@ -22,7 +22,6 @@ return {
 				"prettier",
 				"stylua",
 				"ruff",
-				"isort",
 				"shfmt",
 
 				"golangci-lint",
