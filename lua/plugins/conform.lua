@@ -23,6 +23,7 @@ return {
 			python = { "ruff_format", "ruff_organize_imports" },
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+			sql = { "sqlfluff", stop_after_first = true },
 		},
 		default_format_opts = {
 			lsp_format = "fallback",

@@ -4,6 +4,7 @@ return {
 	opts = {
 		linters_by_ft = {
 			go = { "golangcilint" },
+			sql = { "sqlfluff" },
 			javascript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			lua = { "luacheck" },

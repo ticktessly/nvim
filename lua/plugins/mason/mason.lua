@@ -25,6 +25,7 @@ return {
 				"gopls",
 				"ty",
 				"vtsls",
+				"sqls",
 
 				"gofumpt",
 				"goimports",
@@ -33,6 +34,7 @@ return {
 				"stylua",
 				"ruff",
 				"shfmt",
+				"sqlfluff",
 
 				"golangci-lint",
 				"eslint_d",

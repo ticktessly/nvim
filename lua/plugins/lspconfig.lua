@@ -11,5 +11,6 @@ return {
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("ty")
 		vim.lsp.enable("vtsls")
+		vim.lsp.enable("sqls")
 	end,
 }
