@@ -1,4 +1,5 @@
 require("config.lazy")
-require("config.autocmd")
 require("config.keymaps")
-require("config.opts")
+
+vim.lsp.enable("gopls")
+vim.lsp.enable("emmylua_ls")
