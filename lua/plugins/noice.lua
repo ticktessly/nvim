@@ -9,13 +9,22 @@
 --- noice is loaded unconditionally on `UIEnter`, which is long before any of its
 --- mappings can be pressed, so the mappings below are defined directly as their
 --- final form rather than as lazy stubs.
+---
+--- `nui.nvim` is a hard dependency (see noice's README) even though the old lazy
+--- spec did not declare it. lazy.nvim still resolved `require("nui.object")`
+--- because it installs a `package.preload` hook that searches its whole plugin
+--- cache regardless of 'runtimepath'. `vim.pack` has no such fallback, so the
+--- dependency has to be declared.
 
 local P = require("pack_utils")
 local gh, no_load, make_loader = P.gh, P.no_load, P.make_loader
 
-vim.pack.add({ gh("folke/noice.nvim") }, no_load)
+vim.pack.add({
+  gh("MunifTanjim/nui.nvim"), -- dependency, listed first
+  gh("folke/noice.nvim"),
+}, no_load)
 
-local load = make_loader({ "noice.nvim" }, function()
+local load = make_loader({ "nui.nvim", "noice.nvim" }, function()
   require("noice").setup({
     lsp = {
       override = {
