@@ -43,8 +43,10 @@ from `init.lua` in dependency order.
 
 ## Plugin-by-plugin translation
 
-All 17 plugins installed at **exactly** the commits recorded in `lazy-lock.json`
-(verified with `vim.pack.get()` after install).
+All 18 plugins installed. 16 of them are at **exactly** the commits recorded in
+`lazy-lock.json` (verified with `vim.pack.get()`). The two additions are
+`nui.nvim` (a missing dependency, see below) and the fact that `nui.nvim` was in
+`lazy-lock.json` without ever having a spec behind it.
 
 | plugin | lazy trigger | `vim.pack` trigger |
 |---|---|---|
@@ -64,6 +66,7 @@ All 17 plugins installed at **exactly** the commits recorded in `lazy-lock.json`
 | `bufferline.nvim` | `BufAdd`,`BufDelete`; `<S-h>`,`<S-l>` | same events; 2 wrapper mappings |
 | `flash.nvim` | `VeryLazy`; `s` in n/x/o | `UIEnter` + `vim.schedule`; wrapper mapping |
 | `noice.nvim` | `VeryLazy`; 9 keys | `UIEnter` + `vim.schedule`; mappings defined directly |
+| `nui.nvim` | *(undeclared)* | **added** — hard dependency of noice, see below |
 | `smear-cursor.nvim` | `VeryLazy` | `UIEnter` + `vim.schedule` |
 
 No spec used `cond`, `enabled`, `dev`, `priority`, or `opts_extend`, and no plugin
@@ -134,6 +137,20 @@ resolves normally.
 8. **First launch prompts** to confirm installs (`confirm = true`, the default). In
    headless/scripted runs there is no UI to prompt with, so `lua/pack_utils.lua`
    sets `confirm = false` when `#nvim_list_uis() == 0`.
+9. **lazy.nvim silently resolved undeclared dependencies. `vim.pack` does not.**
+   lazy installs a `package.preload` hook (`lazy/core/loader.lua:M.loader`) that
+   searches its *entire plugin cache* regardless of `'runtimepath'`. That is why
+   `require("nui.object")` worked even though `nui.nvim` was not on rtp and had no
+   spec — it was being pulled out of an orphaned install directory. Two bugs came
+   from this class of problem and are now fixed:
+   * `smear-cursor.nvim`'s module is **`smear_cursor`**, not `smear`. lazy derives
+     the module name from the plugin name automatically; the hand translation had
+     to be explicit.
+   * `nui.nvim` is a hard dependency of `noice.nvim` and is now declared.
+
+   **When adding a plugin, declare every runtime dependency explicitly** — a missing
+   one will only surface at the moment the plugin first touches it. noice defers its
+   `nui` requires behind a lazy proxy, so it failed late rather than at load.
 
 ---
 
