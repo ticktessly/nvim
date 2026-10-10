@@ -137,6 +137,28 @@ resolves normally.
 
 ---
 
+## Startup time
+
+`nvim --startuptime <log> +qa`, warm caches, `NVIM STARTED` timestamp:
+
+| | before (lazy.nvim) | after (`vim.pack`) |
+|---|---|---|
+| samples | 5 | 10 |
+| min | 82.1 ms | 71.8 ms |
+| **median** | **82.7 ms** | **74.0 ms** |
+| max | 89.8 ms | 110.9 ms |
+
+**~8.7 ms (≈10%) faster.** The plugin manager itself went from **20.7 ms** of
+self time across 22 `lazy.*` modules to **1.75 ms** across 5 `vim.pack` modules.
+Part of that saving is given back by `loading rtp plugins` (2.6 ms), which now
+runs because `loadplugins` is back on — previously lazy had turned it off and
+sourced runtime plugins itself.
+
+Only `mini.icons` (~4.3 ms) is still paid for at startup, exactly as before.
+Everything else is loaded on demand.
+
+---
+
 ## Commands now
 
 | action | command |
