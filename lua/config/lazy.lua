@@ -24,13 +24,22 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- import your plugins
     { import = "plugins" },
     { import = "plugins.mini" },
   },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "tutor",
+        "tarPlugin",
+        "gzip",
+        "zipPlugin",
+        "spellfile",
+        "rplugin",
+        "man",
+        "dir",
+        "netrwPlugin", -- replaced by mini.files
+      },
+    },
+  },
 })
