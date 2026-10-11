@@ -8,6 +8,7 @@
   "mini.ai": { "branch": "main", "commit": "c2c4278beb759aa24b9506f56a67186a6cc2209c" },
   "mini.files": { "branch": "main", "commit": "7821bb920b8f0b114c756fb9bd39fd62d76961ac" },
   "mini.icons": { "branch": "main", "commit": "f642e3ba8c12afbc8f32f6d77ef6597eac56786f" },
+  "mini.indentscope": { "branch": "main", "commit": "92fbaf895f83c59575ec599df532b297ebf62b14" },
   "mini.pairs": { "branch": "main", "commit": "b1c5a726921b7a8c9321e9a7a208aa0571de5810" },
   "mini.statusline": { "branch": "main", "commit": "127997ebef7ef632161203b960c5ef9d158f4810" },
   "noice.nvim": { "branch": "main", "commit": "7bfd942445fb63089b59f97ca487d605e715f155" },
