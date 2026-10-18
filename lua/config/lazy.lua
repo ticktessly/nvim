@@ -38,7 +38,7 @@ require("lazy").setup({
         "rplugin",
         "man",
         "dir",
-        "netrwPlugin", -- replaced by mini.files
+        "netrwPlugin", -- replaced by snacks.explorer
       },
     },
   },
