@@ -17,6 +17,7 @@ local function enable_lsp()
   lsp_enabled = true
   vim.lsp.enable("gopls")
   vim.lsp.enable("emmylua_ls")
+  vim.lsp.enable("sqls")
 end
 
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "TermOpen" }, {
