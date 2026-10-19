@@ -48,13 +48,39 @@ return {
     -- Explorer
     {
       "<leader>e",
-      function() Snacks.explorer() end,
+      function()
+        Snacks.explorer()
+      end,
       desc = "Explorer (current file)",
     },
     -- Picker
-    { "<leader>ff", function() require("snacks.picker").files() end, desc = "Find Files" },
-    { "<leader>fg", function() require("snacks.picker").grep() end, desc = "Live Grep" },
-    { "<leader>fb", function() require("snacks.picker").buffers() end, desc = "Buffers" },
-    { "<leader>fr", function() require("snacks.picker").recent() end, desc = "Recent Files" },
+    {
+      "<leader>ff",
+      function()
+        require("snacks.picker").files()
+      end,
+      desc = "Find Files",
+    },
+    {
+      "<leader>fg",
+      function()
+        require("snacks.picker").grep()
+      end,
+      desc = "Live Grep",
+    },
+    {
+      "<leader>fb",
+      function()
+        require("snacks.picker").buffers()
+      end,
+      desc = "Buffers",
+    },
+    {
+      "<leader>fr",
+      function()
+        require("snacks.picker").recent()
+      end,
+      desc = "Recent Files",
+    },
   },
 }
