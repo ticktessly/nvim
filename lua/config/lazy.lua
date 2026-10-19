@@ -21,6 +21,18 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Add support for the LazyFile event (like LazyVim does)
+-- "LazyFile" is an alias for BufReadPost/BufWritePost/BufNewFile, but it is
+-- deferred: lazy.nvim only loads LazyFile plugins when one of these fires,
+-- then re-triggers the event so autocmds created by the loaded plugins still
+-- run for the buffer that triggered it. This keeps the initial UI render fast.
+local Event = require("lazy.core.handler.event")
+Event.mappings.LazyFile = {
+  id = "LazyFile",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+}
+Event.mappings["User LazyFile"] = Event.mappings.LazyFile
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
