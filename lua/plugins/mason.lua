@@ -42,7 +42,6 @@ return {
         "sqlfluff",
 
         "golangci-lint",
-        "luacheck",
       },
       run_on_start = true,
       start_delay = 3000,
